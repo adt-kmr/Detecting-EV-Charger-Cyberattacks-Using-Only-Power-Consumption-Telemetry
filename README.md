@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔌 Detecting EV Charger Cyberattacks Using Only Power-Consumption Telemetry
+# Detecting EV Charger Cyberattacks Using Only Power-Consumption Telemetry
 
 **Non-invasive cyber-intrusion detection for Electric Vehicle Supply Equipment (EVSE) from physical power signals alone**
 
@@ -13,7 +13,7 @@
 
 ---
 
-## 📖 Overview
+## Overview
 
 Electric Vehicle Supply Equipment (EVSE) is becoming an increasingly
 networked and security-sensitive component of the modern grid. This project
@@ -35,21 +35,21 @@ and ensemble detectors to classify both **binary** (attack/benign) and
 
 ---
 
-## ✨ Highlights
+## Highlights
 
-- 🛰️ **Content-agnostic detection** — only physical power signals used.
-- 🧠 **Hybrid pipeline** — XGBoost + LightGBM + RandomForest **soft-voting
+- **Content-agnostic detection** — only physical power signals used.
+- **Hybrid pipeline** — XGBoost + LightGBM + RandomForest **soft-voting
   ensemble**, seeded with an unsupervised **Isolation Forest** anomaly score.
-- ⏱️ **Temporal-validation rigor** — direct A/B comparison of chronological
+- **Temporal-validation rigor** — direct A/B comparison of chronological
   (out-of-distribution) vs. stratified-by-time-block evaluation, exposing the
   leakage pitfall.
-- 🔍 **Explainable** — SHAP (TreeExplainer) feature attribution for every model.
-- 🧪 **Reproducible** — fixed seeds, self-contained numbered notebooks, and a
+- **Explainable** — SHAP (TreeExplainer) feature attribution for every model.
+- **Reproducible** — fixed seeds, self-contained numbered notebooks, and a
   pinned dependency stack.
 
 ---
 
-## 📊 Results at a Glance
+## Results at a Glance
 
 ### Binary attack detection
 
@@ -70,7 +70,7 @@ and ensemble detectors to classify both **binary** (attack/benign) and
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 .
@@ -92,7 +92,7 @@ and ensemble detectors to classify both **binary** (attack/benign) and
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -103,8 +103,8 @@ and ensemble detectors to classify both **binary** (attack/benign) and
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-org>/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/adt-kmr/Detecting-EV-Charger-Cyberattacks-Using-Only-Power-Consumption-Telemetry
+cd Detecting-EV-Charger-Cyberattacks-Using-Only-Power-Consumption-Telemetry
 
 # 2. (Recommended) create a virtual environment
 python -m venv .venv
@@ -127,13 +127,13 @@ jupyter lab            # or: jupyter notebook
 | 02 | `02_chronological_split_method.ipynb` | Chronological (OOD) evaluation, binary + multiclass, SHAP |
 | 03 | `03_validation_strategy_comparison.ipynb` | A/B test of validation strategies |
 
-> 📌 **Note.** The dataset (`EVSE-B-PowerCombined (1).csv`) is not committed to
+> **Note.** The dataset (`EVSE-B-PowerCombined (1).csv`) is not committed to
 > this repository. Place it under `data/raw/` (or mount it via Google Colab as
 > in the original notebooks) before running.
 
 ---
 
-## 🧠 Methodology Highlights
+## Methodology Highlights
 
 1. **Feature engineering** — rolling (`window=20`) `delta`, `mean`, `std`,
    `skew`, `crest` per physical signal.
@@ -148,7 +148,7 @@ See [`docs/methodology.md`](docs/methodology.md) for the full description.
 
 ---
 
-## 📄 Documentation
+## Documentation
 
 | Document | Contents |
 |----------|----------|
@@ -158,7 +158,7 @@ See [`docs/methodology.md`](docs/methodology.md) for the full description.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome. Please read
 [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines.
@@ -178,15 +178,6 @@ Contributions are welcome. Please read
 
 ---
 
-## 📚 References
-
-- EVSE Cybersecurity Dataset — Dataset B, *PowerCombined* telemetry.
-- Open Charge Point Protocol (OCPP) standard.
-- SHAP: *A Unified Approach to Interpreting Model Predictions* (Lundberg &
-  Lee, 2017).
-- Liu, Ting & Zhou — *Isolation Forest* (ICDM, 2008).
-
----
 
 ## 📜 License
 
