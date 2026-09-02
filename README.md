@@ -13,6 +13,9 @@
 
 ---
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/658817b3-e411-43d6-9f96-5b437a1a10fc" />
+
+
 ## Overview
 
 Electric Vehicle Supply Equipment (EVSE) is becoming an increasingly
