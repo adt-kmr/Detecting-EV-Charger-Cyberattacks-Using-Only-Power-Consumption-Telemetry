@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EVSE Power Sentinel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <div class="logo">&#x2301;</div>
+      <div>
+        <h1>EVSE Power Sentinel</h1>
+        <p class="sub">Detecting EV-charger cyberattacks from power-consumption telemetry only</p>
+      </div>
+    </div>
+    <div class="controls-top">
+      <div class="seg" id="strategySeg"></div>
+      <button class="primary" id="trainBtn">&#x27F2; Retrain models</button>
+      <span class="pill" id="statusPill"><span class="dot" id="statusDot"></span><span id="statusText">Connecting</span></span>
+    </div>
+  </header>
+
+  <div class="clay" id="trainBar">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <b id="trainStep">Preparing</b><span class="muted mono" id="trainPct">0%</span>
+    </div>
+    <div class="progress"><i id="trainFill"></i></div>
+    <p class="sub" style="margin-top:10px">Models are trained live on the real EVSE-B PowerCombined dataset in the backend. Nothing on this page is precomputed.</p>
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <div class="grid hero">
+    <div class="clay stage">
+      <div class="stage-head">
+        <span class="tag" id="clockTag">--:--</span>
+        <span class="tag" id="stateTag">Charger state</span>
+      </div>
+      <div id="scene"></div>
+      <div class="stage-foot">
+        <button class="sun" id="playBtn" disabled>&#x25B6; Play stream</button>
+        <button id="stepBtn" disabled>&#x25B8; Step</button>
+        <div class="seg" id="speedSeg"></div>
+        <span class="grow"></span>
+        <select id="jumpSel" disabled><option>Jump to an episode</option></select>
+      </div>
+    </div>
+
+    <div class="grid" style="gap:22px">
+      <div class="clay">
+        <h2><span class="sym">&#x25C9;</span>Live verdict <span class="muted" style="font-size:12px;font-weight:700;margin-left:auto" id="rowIdx"></span></h2>
+        <div class="verdict">
+          <div class="gauge">
+            <svg viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#f0ebff" stroke-width="14" />
+              <circle id="gaugeArc" cx="60" cy="60" r="50" fill="none" stroke="#7c5cff" stroke-width="14" stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16" />
+            </svg>
+            <div class="val"><div><b id="gaugeNum">--</b><span>P(attack)</span></div></div>
+          </div>
+          <div>
+            <div class="state-word" id="stateWord">Waiting</div>
+            <p class="sub" id="groupLine" style="margin-top:6px">Predicted attack group: --</p>
+            <div class="truth">
+              <span class="mark" id="truthMark">&#x2013;</span>
+              <span>Ground truth: <b id="truthText">--</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clay">
+        <h2><span class="sym y">&#x25A4;</span>Multiclass attack-group probabilities</h2>
+        <div class="bars" id="groupBars"></div>
+      </div>
+
+      <div class="clay">
+        <h2><span class="sym">&#x2261;</span>Ensemble members</h2>
+        <div class="bars" id="modelBars"></div>
+        <div class="bar" style="margin-top:10px"><span class="name">Isolation Forest</span><div class="track"><div class="fill y" id="isoFill"></div></div><span class="num" id="isoNum">--</span></div>
+        <p class="axis-note">Isolation Forest shows the unsupervised anomaly score (lower = more anomalous), fed to the classifiers as a feature.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= LIVE TELEMETRY ================= -->
+  <section class="grid two">
+    <div class="clay">
+      <h2><span class="sym">&#x223F;</span>Live power telemetry</h2>
+      <div class="grid two" style="gap:16px">
+        <div><div class="chart-label"><span>Power (mW)</span><span id="v_power_mW" class="mono">--</span></div><canvas class="chart" id="c_power_mW"></canvas></div>
+        <div><div class="chart-label"><span>Current (mA)</span><span id="v_current_mA" class="mono">--</span></div><canvas class="chart" id="c_current_mA"></canvas></div>
+        <div><div class="chart-label"><span>Bus voltage (V)</span><span id="v_bus_voltage_V" class="mono">--</span></div><canvas class="chart" id="c_bus_voltage_V"></canvas></div>
+        <div><div class="chart-label"><span>Shunt voltage (&#x00B5;V)</span><span id="v_shunt_voltage" class="mono">--</span></div><canvas class="chart" id="c_shunt_voltage"></canvas></div>
+      </div>
+    </div>
+    <div class="clay">
+      <h2><span class="sym y">&#x25B2;</span>Detector output vs. ground truth</h2>
+      <canvas class="chart tall" id="c_prob"></canvas>
+      <div class="legend">
+        <span><i style="background:#7c5cff"></i>Ensemble P(attack)</span>
+        <span><i style="background:#ffc933"></i>True attack band</span>
+        <span><i style="background:#a39cb8"></i>0.5 threshold</span>
+      </div>
+      <div class="mini-stats" style="margin-top:16px">
+        <div class="mini"><b id="s_seen">0</b><span>Samples scored</span></div>
+        <div class="mini"><b id="s_acc">--</b><span>Running accuracy</span></div>
+        <div class="mini"><b id="s_det">--</b><span>Attack recall</span></div>
+        <div class="mini"><b id="s_fa">--</b><span>False alarm rate</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid two">
+    <div class="clay">
+      <h2><span class="sym">&#x2194;</span>Why this decision? (per-sample TreeSHAP)</h2>
+      <p class="sub" style="margin-bottom:14px">Contributions from the XGBoost member for the sample on screen. Yellow pushes toward <b>attack</b>, purple toward <b>benign</b>.</p>
+      <div class="shap" id="localShap"></div>
+    </div>
+    <div class="clay">
+      <h2><span class="sym y">&#x2630;</span>Global feature importance (mean |SHAP|)</h2>
+      <p class="sub" style="margin-bottom:14px">Computed on held-out test rows right after training.</p>
+      <div class="bars" id="globalShap"></div>
+    </div>
+  </section>
+
+  <!-- ================= EVALUATION ================= -->
+  <section>
+    <div class="clay purple">
+      <h2><span class="sym">&#x25A3;</span>Held-out evaluation <span class="muted" id="evalStrategy" style="font-size:13px;font-weight:700"></span></h2>
+      <div class="grid four" id="kpis"></div>
+    </div>
+  </section>
+
+  <section class="grid three">
+    <div class="clay">
+      <h2><span class="sym">&#x25A6;</span>Binary confusion matrix</h2>
+      <div id="cmBin"></div>
+    </div>
+    <div class="clay">
+      <h2><span class="sym y">&#x25A6;</span>Attack-group confusion matrix</h2>
+      <div id="cmMulti"></div>
+    </div>
+    <div class="clay">
+      <h2><span class="sym">&#x2261;</span>Model comparison (balanced acc.)</h2>
+      <div class="bars" id="perModel"></div>
+      <h2 style="margin-top:20px"><span class="sym y">&#x25C6;</span>Per attack-group F1</h2>
+      <table class="rep" id="multiRep"></table>
+    </div>
+  </section>
+
+  <!-- ================= UPLOAD ================= -->
+  <section class="grid two">
+    <div class="clay">
+      <h2><span class="sym y">&#x21EA;</span>Score your own telemetry</h2>
+      <label class="drop" id="drop">
+        <input type="file" id="fileIn" accept=".csv" hidden />
+        <div class="big">&#x2913;</div>
+        <b>Drop a CSV here or click to choose</b>
+        <p class="sub">Needs columns <span class="mono">time, shunt_voltage, bus_voltage_V, current_mA, power_mW</span>. If a <span class="mono">Label</span> column is present, accuracy is computed too.</p>
+      </label>
+      <p class="error" id="upErr"></p>
+    </div>
+    <div class="clay">
+      <h2><span class="sym">&#x2318;</span>Upload result</h2>
+      <div id="upRes"><p class="sub">No file scored yet.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="clay">
+      <h2><span class="sym">&#x24D8;</span>Dataset</h2>
+      <div id="dsInfo" class="sub">Loading</div>
+    </div>
+  </section>
+
+  <footer>&#x25C6; XGBoost &middot; LightGBM &middot; RandomForest soft-voting ensemble with Isolation Forest anomaly feature &#x25C6;</footer>
+</div>
+
+<script type="module" src="/static/main.js"></script>
+</body>
+</html>

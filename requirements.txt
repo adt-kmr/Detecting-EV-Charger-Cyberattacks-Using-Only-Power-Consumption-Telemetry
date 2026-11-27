@@ -19,3 +19,8 @@ ipykernel>=6.25
 
 # Reproducibility
 pyyaml>=6.0
+
+# Web demo (app/)
+fastapi>=0.110
+uvicorn>=0.29
+python-multipart>=0.0.9
