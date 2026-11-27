@@ -436,5 +436,52 @@ async function loadDataset() {
   } catch { setTimeout(loadDataset, 2000); }
 }
 
+/* ------------------------------------------------------------------ */
+/* Benchmark vs EVDetect (results produced offline by run_benchmark.py) */
+/* ------------------------------------------------------------------ */
+let bench = null, benchProto = "block";
+async function loadBenchmark() {
+  try { bench = await api("/api/benchmark"); } catch { return; }
+  $("benchSection").style.display = "";
+  const seg = $("benchProto");
+  seg.innerHTML = "";
+  for (const [k, label] of [["block", "Leakage-aware blocks"], ["evdetect", "EVDetect's random split"]]) {
+    const b = document.createElement("button");
+    b.textContent = label;
+    b.dataset.k = k;
+    b.onclick = () => { benchProto = k; renderBenchmark(); };
+    seg.appendChild(b);
+  }
+  renderBenchmark();
+}
+function renderBenchmark() {
+  [...$("benchProto").children].forEach((b) => b.classList.toggle("on", b.dataset.k === benchProto));
+  const short = { "EVDetect RF": "EVDetect RF", "EVDetect XGBoost": "EVDetect XGB", "Ours (raw features)": "Ours (raw)", "Ours (full pipeline)": "Ours (full)" };
+  const scen = [["binary", "full", "Binary · full"], ["binary", "charging", "Binary · charging"],
+                ["multiclass", "full", "5-class · full"], ["multiclass", "charging", "5-class · charging"]];
+  const lo = 0.5;  // axis floor so differences are visible
+  $("benchGrid").innerHTML = scen.map(([t, s, title]) => {
+    const rows = bench.runs.filter((r) => r.protocol === benchProto && r.task === t && r.scope === s);
+    const best = Math.max(...rows.map((r) => r.metrics.f1.point));
+    const pos = (v) => Math.max(0, (v - lo) / (1 - lo)) * 100;
+    return `<div class="clay"><div class="chart-label" style="margin:0 0 12px"><span style="color:var(--ink);font-size:14px">${title}</span><span>n = ${rows[0].n_test.toLocaleString()}</span></div>
+      <div class="bars">${rows.map((r) => {
+        const f = r.metrics.f1, ours = r.model.startsWith("Ours (full");
+        return `<div class="bar${f.point === best ? " top" : ""}" style="grid-template-columns:82px 1fr 46px" title="${r.model}: ${f.point} [${f.lo} - ${f.hi}]">
+          <span class="name">${short[r.model]}</span>
+          <div class="track" style="position:relative;overflow:visible"><div class="fill${ours ? " y" : ""}" style="width:${pos(f.point)}%"></div>
+            <i style="position:absolute;top:-3px;bottom:-3px;left:${pos(f.lo)}%;width:${Math.max(0.6, pos(f.hi) - pos(f.lo))}%;border-left:2px solid var(--ink);border-right:2px solid var(--ink);opacity:.55;border-radius:2px"></i></div>
+          <span class="num">${f.point.toFixed(3)}</span></div>`;
+      }).join("")}</div>
+      <div class="axis-note">Axis 0.5 &rarr; 1.0 &middot; whiskers = 95% CI</div></div>`;
+  }).join("");
+  const pick = (t, s, m) => bench.runs.find((r) => r.protocol === benchProto && r.task === t && r.scope === s && r.model === m).metrics.f1.point;
+  const gap = (t, s) => pick(t, s, "Ours (full pipeline)") - Math.max(pick(t, s, "EVDetect RF"), pick(t, s, "EVDetect XGBoost"));
+  $("benchNote").innerHTML = benchProto === "block"
+    ? `&#x25C6; Whole 1-minute blocks are held out, with a block bootstrap. The full pipeline leads EVDetect's best model by <b>+${(gap("binary", "full") * 100).toFixed(1)}</b> macro-F1 points (binary) and <b>+${(gap("multiclass", "full") * 100).toFixed(1)}</b> (5-class) on the full dataset. "Ours (raw)" is level with EVDetect, so the gain comes from the temporal features, not the classifier.`
+    : `&#x25C6; EVDetect's exact protocol and test set (stratified random rows, seed 42). Re-running their tuned models reproduces their published numbers to within 0.002. Random row splits let neighbouring seconds leak into training, so compare with the block view as well.`;
+}
+
 pollStatus();
 loadDataset();
+loadBenchmark();

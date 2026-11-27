@@ -47,3 +47,6 @@ Thumbs.db
 # Logs
 *.log
 wandb/
+
+# Benchmark outputs are small and meant to be versioned
+!benchmarks/**/results/*.json

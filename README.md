@@ -155,6 +155,8 @@ See [`docs/methodology.md`](docs/methodology.md) for the full description.
 
 | Document | Contents |
 |----------|----------|
+| [`docs/PROJECT_GUIDE.md`](docs/PROJECT_GUIDE.md) | **Start here:** end-to-end guide to the data, algorithms, validation methods, web app and code |
+| [`benchmarks/evdetect/README.md`](benchmarks/evdetect/README.md) | Benchmark against EVDetect (Scientific Reports, 2026) on the same data |
 | [`docs/background.md`](docs/background.md) | Problem context, motivation, why temporal validation matters |
 | [`docs/methodology.md`](docs/methodology.md) | Data, features, models, validation strategies, metrics |
 | [`docs/results.md`](docs/results.md) | Full quantitative results and interpretation |

@@ -92,6 +92,16 @@ async def predict(file: UploadFile = File(...)):
         raise HTTPException(400, str(e))
 
 
+BENCH = Path(__file__).resolve().parent.parent / "benchmarks" / "evdetect" / "results" / "benchmark_results.json"
+
+
+@app.get("/api/benchmark")
+def benchmark():
+    if not BENCH.exists():
+        raise HTTPException(404, "Run benchmarks/evdetect/run_benchmark.py first")
+    return FileResponse(BENCH, media_type="application/json")
+
+
 app.mount("/static", StaticFiles(directory=STATIC), name="static")
 
 

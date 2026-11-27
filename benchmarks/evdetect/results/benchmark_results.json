@@ -1,0 +1,2358 @@
+{
+ "meta": {
+  "dataset": "EVSE-B-PowerCombined.csv",
+  "rows": 115298,
+  "n_boot": 1000,
+  "seed": 42,
+  "rows_without_rolling_features": 19,
+  "evdetect_published": {
+   "binary|full": {
+    "Random Forest": [
+     0.9454,
+     0.8727
+    ],
+    "XGBoost": [
+     0.9475,
+     0.8774
+    ],
+    "Stacking": [
+     0.9481,
+     0.8739
+    ]
+   },
+   "binary|charging": {
+    "Random Forest": [
+     0.8618,
+     0.8096
+    ],
+    "XGBoost": [
+     0.8731,
+     0.8103
+    ],
+    "Stacking": [
+     0.8586,
+     0.813
+    ]
+   },
+   "multiclass|full": {
+    "Random Forest": [
+     0.6311,
+     0.6516
+    ],
+    "XGBoost": [
+     0.6441,
+     0.6551
+    ],
+    "Stacking": [
+     0.6432,
+     0.6587
+    ]
+   },
+   "multiclass|charging": {
+    "Random Forest": [
+     0.8493,
+     0.8397
+    ],
+    "XGBoost": [
+     0.8571,
+     0.8422
+    ],
+    "Stacking": [
+     0.8539,
+     0.8439
+    ]
+   }
+  },
+  "seconds": 130.0
+ },
+ "runs": [
+  {
+   "task": "binary",
+   "scope": "full",
+   "protocol": "evdetect",
+   "model": "EVDetect RF",
+   "n_train": 73790,
+   "n_test": 23057,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.9434,
+     "lo": 0.9403,
+     "hi": 0.9462
+    },
+    "precision": {
+     "point": 0.8671,
+     "lo": 0.8592,
+     "hi": 0.8748
+    },
+    "recall": {
+     "point": 0.8769,
+     "lo": 0.8694,
+     "hi": 0.8841
+    },
+    "f1": {
+     "point": 0.8719,
+     "lo": 0.8652,
+     "hi": 0.8785
+    }
+   },
+   "confusion": [
+    [
+     2265,
+     608
+    ],
+    [
+     698,
+     19486
+    ]
+   ],
+   "reproduction": {
+    "Random Forest": {
+     "accuracy": {
+      "point": 0.9434,
+      "lo": 0.9406,
+      "hi": 0.9464
+     },
+     "precision": {
+      "point": 0.8671,
+      "lo": 0.8581,
+      "hi": 0.8744
+     },
+     "recall": {
+      "point": 0.8769,
+      "lo": 0.8701,
+      "hi": 0.884
+     },
+     "f1": {
+      "point": 0.8719,
+      "lo": 0.8655,
+      "hi": 0.8778
+     }
+    },
+    "XGBoost": {
+     "accuracy": {
+      "point": 0.9479,
+      "lo": 0.9452,
+      "hi": 0.9509
+     },
+     "precision": {
+      "point": 0.8869,
+      "lo": 0.8793,
+      "hi": 0.8932
+     },
+     "recall": {
+      "point": 0.8692,
+      "lo": 0.8627,
+      "hi": 0.8785
+     },
+     "f1": {
+      "point": 0.8777,
+      "lo": 0.8716,
+      "hi": 0.8848
+     }
+    },
+    "n_test": 23060
+   }
+  },
+  {
+   "task": "binary",
+   "scope": "full",
+   "protocol": "evdetect",
+   "model": "EVDetect XGBoost",
+   "n_train": 73790,
+   "n_test": 23057,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.9479,
+     "lo": 0.9453,
+     "hi": 0.9506
+    },
+    "precision": {
+     "point": 0.8869,
+     "lo": 0.8798,
+     "hi": 0.8945
+    },
+    "recall": {
+     "point": 0.8692,
+     "lo": 0.8616,
+     "hi": 0.8767
+    },
+    "f1": {
+     "point": 0.8777,
+     "lo": 0.8716,
+     "hi": 0.8846
+    }
+   },
+   "confusion": [
+    [
+     2196,
+     677
+    ],
+    [
+     525,
+     19659
+    ]
+   ],
+   "reproduction": {
+    "Random Forest": {
+     "accuracy": {
+      "point": 0.9434,
+      "lo": 0.9406,
+      "hi": 0.9464
+     },
+     "precision": {
+      "point": 0.8671,
+      "lo": 0.8581,
+      "hi": 0.8744
+     },
+     "recall": {
+      "point": 0.8769,
+      "lo": 0.8701,
+      "hi": 0.884
+     },
+     "f1": {
+      "point": 0.8719,
+      "lo": 0.8655,
+      "hi": 0.8778
+     }
+    },
+    "XGBoost": {
+     "accuracy": {
+      "point": 0.9479,
+      "lo": 0.9452,
+      "hi": 0.9509
+     },
+     "precision": {
+      "point": 0.8869,
+      "lo": 0.8793,
+      "hi": 0.8932
+     },
+     "recall": {
+      "point": 0.8692,
+      "lo": 0.8627,
+      "hi": 0.8785
+     },
+     "f1": {
+      "point": 0.8777,
+      "lo": 0.8716,
+      "hi": 0.8848
+     }
+    },
+    "n_test": 23060
+   }
+  },
+  {
+   "task": "binary",
+   "scope": "full",
+   "protocol": "evdetect",
+   "model": "Ours (raw features)",
+   "n_train": 73790,
+   "n_test": 23057,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.9383,
+     "lo": 0.9351,
+     "hi": 0.9413
+    },
+    "precision": {
+     "point": 0.9032,
+     "lo": 0.8957,
+     "hi": 0.911
+    },
+    "recall": {
+     "point": 0.7941,
+     "lo": 0.7854,
+     "hi": 0.8029
+    },
+    "f1": {
+     "point": 0.837,
+     "lo": 0.8292,
+     "hi": 0.8449
+    }
+   },
+   "confusion": [
+    [
+     1730,
+     1143
+    ],
+    [
+     280,
+     19904
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "binary",
+   "scope": "full",
+   "protocol": "evdetect",
+   "model": "Ours (full pipeline)",
+   "n_train": 73790,
+   "n_test": 23057,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.9828,
+     "lo": 0.9811,
+     "hi": 0.9844
+    },
+    "precision": {
+     "point": 0.973,
+     "lo": 0.9693,
+     "hi": 0.9768
+    },
+    "recall": {
+     "point": 0.9471,
+     "lo": 0.9413,
+     "hi": 0.9521
+    },
+    "f1": {
+     "point": 0.9595,
+     "lo": 0.9555,
+     "hi": 0.9633
+    }
+   },
+   "confusion": [
+    [
+     2584,
+     289
+    ],
+    [
+     107,
+     20077
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "binary",
+   "scope": "full",
+   "protocol": "block",
+   "model": "EVDetect RF",
+   "n_train": 92299,
+   "n_test": 22999,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.9483,
+     "lo": 0.9407,
+     "hi": 0.9554
+    },
+    "precision": {
+     "point": 0.8537,
+     "lo": 0.8138,
+     "hi": 0.882
+    },
+    "recall": {
+     "point": 0.8895,
+     "lo": 0.8685,
+     "hi": 0.9087
+    },
+    "f1": {
+     "point": 0.8704,
+     "lo": 0.8446,
+     "hi": 0.89
+    }
+   },
+   "confusion": [
+    [
+     1989,
+     452
+    ],
+    [
+     737,
+     19821
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "binary",
+   "scope": "full",
+   "protocol": "block",
+   "model": "EVDetect XGBoost",
+   "n_train": 92299,
+   "n_test": 22999,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.952,
+     "lo": 0.9439,
+     "hi": 0.9596
+    },
+    "precision": {
+     "point": 0.8697,
+     "lo": 0.8335,
+     "hi": 0.8949
+    },
+    "recall": {
+     "point": 0.8818,
+     "lo": 0.8602,
+     "hi": 0.9027
+    },
+    "f1": {
+     "point": 0.8757,
+     "lo": 0.851,
+     "hi": 0.8935
+    }
+   },
+   "confusion": [
+    [
+     1935,
+     506
+    ],
+    [
+     597,
+     19961
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "binary",
+   "scope": "full",
+   "protocol": "block",
+   "model": "Ours (raw features)",
+   "n_train": 92299,
+   "n_test": 22999,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.9484,
+     "lo": 0.9357,
+     "hi": 0.9602
+    },
+    "precision": {
+     "point": 0.8875,
+     "lo": 0.8571,
+     "hi": 0.9069
+    },
+    "recall": {
+     "point": 0.824,
+     "lo": 0.7848,
+     "hi": 0.8606
+    },
+    "f1": {
+     "point": 0.852,
+     "lo": 0.8186,
+     "hi": 0.8783
+    }
+   },
+   "confusion": [
+    [
+     1626,
+     815
+    ],
+    [
+     372,
+     20186
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "binary",
+   "scope": "full",
+   "protocol": "block",
+   "model": "Ours (full pipeline)",
+   "n_train": 92299,
+   "n_test": 22999,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.9829,
+     "lo": 0.9764,
+     "hi": 0.9888
+    },
+    "precision": {
+     "point": 0.9727,
+     "lo": 0.9599,
+     "hi": 0.9825
+    },
+    "recall": {
+     "point": 0.9354,
+     "lo": 0.9103,
+     "hi": 0.959
+    },
+    "f1": {
+     "point": 0.953,
+     "lo": 0.9362,
+     "hi": 0.9678
+    }
+   },
+   "confusion": [
+    [
+     2136,
+     305
+    ],
+    [
+     89,
+     20469
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "binary",
+   "scope": "charging",
+   "protocol": "evdetect",
+   "model": "EVDetect RF",
+   "n_train": 18939,
+   "n_test": 5919,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.8508,
+     "lo": 0.8422,
+     "hi": 0.8589
+    },
+    "precision": {
+     "point": 0.7904,
+     "lo": 0.7793,
+     "hi": 0.8015
+    },
+    "recall": {
+     "point": 0.8297,
+     "lo": 0.818,
+     "hi": 0.841
+    },
+    "f1": {
+     "point": 0.8061,
+     "lo": 0.7949,
+     "hi": 0.8168
+    }
+   },
+   "confusion": [
+    [
+     1097,
+     292
+    ],
+    [
+     591,
+     3939
+    ]
+   ],
+   "reproduction": {
+    "Random Forest": {
+     "accuracy": {
+      "point": 0.8508,
+      "lo": 0.8427,
+      "hi": 0.8583
+     },
+     "precision": {
+      "point": 0.7904,
+      "lo": 0.7797,
+      "hi": 0.8009
+     },
+     "recall": {
+      "point": 0.8297,
+      "lo": 0.818,
+      "hi": 0.8396
+     },
+     "f1": {
+      "point": 0.8061,
+      "lo": 0.796,
+      "hi": 0.8159
+     }
+    },
+    "XGBoost": {
+     "accuracy": {
+      "point": 0.8733,
+      "lo": 0.8645,
+      "hi": 0.8804
+     },
+     "precision": {
+      "point": 0.8386,
+      "lo": 0.8258,
+      "hi": 0.8495
+     },
+     "recall": {
+      "point": 0.7914,
+      "lo": 0.78,
+      "hi": 0.8036
+     },
+     "f1": {
+      "point": 0.8109,
+      "lo": 0.7983,
+      "hi": 0.8216
+     }
+    },
+    "n_test": 5919
+   }
+  },
+  {
+   "task": "binary",
+   "scope": "charging",
+   "protocol": "evdetect",
+   "model": "EVDetect XGBoost",
+   "n_train": 18939,
+   "n_test": 5919,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.8733,
+     "lo": 0.8652,
+     "hi": 0.8817
+    },
+    "precision": {
+     "point": 0.8386,
+     "lo": 0.8258,
+     "hi": 0.8512
+    },
+    "recall": {
+     "point": 0.7914,
+     "lo": 0.7791,
+     "hi": 0.8048
+    },
+    "f1": {
+     "point": 0.8109,
+     "lo": 0.7991,
+     "hi": 0.8233
+    }
+   },
+   "confusion": [
+    [
+     885,
+     504
+    ],
+    [
+     246,
+     4284
+    ]
+   ],
+   "reproduction": {
+    "Random Forest": {
+     "accuracy": {
+      "point": 0.8508,
+      "lo": 0.8427,
+      "hi": 0.8583
+     },
+     "precision": {
+      "point": 0.7904,
+      "lo": 0.7797,
+      "hi": 0.8009
+     },
+     "recall": {
+      "point": 0.8297,
+      "lo": 0.818,
+      "hi": 0.8396
+     },
+     "f1": {
+      "point": 0.8061,
+      "lo": 0.796,
+      "hi": 0.8159
+     }
+    },
+    "XGBoost": {
+     "accuracy": {
+      "point": 0.8733,
+      "lo": 0.8645,
+      "hi": 0.8804
+     },
+     "precision": {
+      "point": 0.8386,
+      "lo": 0.8258,
+      "hi": 0.8495
+     },
+     "recall": {
+      "point": 0.7914,
+      "lo": 0.78,
+      "hi": 0.8036
+     },
+     "f1": {
+      "point": 0.8109,
+      "lo": 0.7983,
+      "hi": 0.8216
+     }
+    },
+    "n_test": 5919
+   }
+  },
+  {
+   "task": "binary",
+   "scope": "charging",
+   "protocol": "evdetect",
+   "model": "Ours (raw features)",
+   "n_train": 18939,
+   "n_test": 5919,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.8689,
+     "lo": 0.8601,
+     "hi": 0.8775
+    },
+    "precision": {
+     "point": 0.8394,
+     "lo": 0.8263,
+     "hi": 0.8516
+    },
+    "recall": {
+     "point": 0.7743,
+     "lo": 0.7609,
+     "hi": 0.7875
+    },
+    "f1": {
+     "point": 0.7992,
+     "lo": 0.7862,
+     "hi": 0.8121
+    }
+   },
+   "confusion": [
+    [
+     828,
+     561
+    ],
+    [
+     215,
+     4315
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "binary",
+   "scope": "charging",
+   "protocol": "evdetect",
+   "model": "Ours (full pipeline)",
+   "n_train": 18939,
+   "n_test": 5919,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.977,
+     "lo": 0.9731,
+     "hi": 0.9806
+    },
+    "precision": {
+     "point": 0.9763,
+     "lo": 0.9713,
+     "hi": 0.9809
+    },
+    "recall": {
+     "point": 0.9593,
+     "lo": 0.9516,
+     "hi": 0.966
+    },
+    "f1": {
+     "point": 0.9674,
+     "lo": 0.9618,
+     "hi": 0.9726
+    }
+   },
+   "confusion": [
+    [
+     1286,
+     103
+    ],
+    [
+     33,
+     4497
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "binary",
+   "scope": "charging",
+   "protocol": "block",
+   "model": "EVDetect RF",
+   "n_train": 24927,
+   "n_test": 4666,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.839,
+     "lo": 0.8136,
+     "hi": 0.865
+    },
+    "precision": {
+     "point": 0.7477,
+     "lo": 0.6715,
+     "hi": 0.8027
+    },
+    "recall": {
+     "point": 0.8224,
+     "lo": 0.7968,
+     "hi": 0.8459
+    },
+    "f1": {
+     "point": 0.7722,
+     "lo": 0.7051,
+     "hi": 0.8153
+    }
+   },
+   "confusion": [
+    [
+     694,
+     178
+    ],
+    [
+     573,
+     3221
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "binary",
+   "scope": "charging",
+   "protocol": "block",
+   "model": "EVDetect XGBoost",
+   "n_train": 24927,
+   "n_test": 4666,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.8823,
+     "lo": 0.8505,
+     "hi": 0.9104
+    },
+    "precision": {
+     "point": 0.8095,
+     "lo": 0.7412,
+     "hi": 0.8462
+    },
+    "recall": {
+     "point": 0.7947,
+     "lo": 0.7675,
+     "hi": 0.8194
+    },
+    "f1": {
+     "point": 0.8017,
+     "lo": 0.7599,
+     "hi": 0.8261
+    }
+   },
+   "confusion": [
+    [
+     571,
+     301
+    ],
+    [
+     248,
+     3546
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "binary",
+   "scope": "charging",
+   "protocol": "block",
+   "model": "Ours (raw features)",
+   "n_train": 24927,
+   "n_test": 4666,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.8798,
+     "lo": 0.8443,
+     "hi": 0.9115
+    },
+    "precision": {
+     "point": 0.8095,
+     "lo": 0.7459,
+     "hi": 0.8456
+    },
+    "recall": {
+     "point": 0.7768,
+     "lo": 0.7455,
+     "hi": 0.8048
+    },
+    "f1": {
+     "point": 0.7914,
+     "lo": 0.7542,
+     "hi": 0.8164
+    }
+   },
+   "confusion": [
+    [
+     534,
+     338
+    ],
+    [
+     223,
+     3571
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "binary",
+   "scope": "charging",
+   "protocol": "block",
+   "model": "Ours (full pipeline)",
+   "n_train": 24927,
+   "n_test": 4666,
+   "classes": [
+    "Benign",
+    "Attack"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.9644,
+     "lo": 0.9406,
+     "hi": 0.9839
+    },
+    "precision": {
+     "point": 0.9579,
+     "lo": 0.9247,
+     "hi": 0.9787
+    },
+    "recall": {
+     "point": 0.9229,
+     "lo": 0.8689,
+     "hi": 0.9716
+    },
+    "f1": {
+     "point": 0.9392,
+     "lo": 0.8975,
+     "hi": 0.9696
+    }
+   },
+   "confusion": [
+    [
+     747,
+     125
+    ],
+    [
+     41,
+     3753
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "full",
+   "protocol": "evdetect",
+   "model": "EVDetect RF",
+   "n_train": 73790,
+   "n_test": 23051,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.631,
+     "lo": 0.625,
+     "hi": 0.6376
+    },
+    "precision": {
+     "point": 0.6556,
+     "lo": 0.6491,
+     "hi": 0.6623
+    },
+    "recall": {
+     "point": 0.6656,
+     "lo": 0.6593,
+     "hi": 0.6721
+    },
+    "f1": {
+     "point": 0.6516,
+     "lo": 0.6451,
+     "hi": 0.6577
+    }
+   },
+   "confusion": [
+    [
+     3332,
+     350,
+     83,
+     182,
+     280
+    ],
+    [
+     597,
+     2140,
+     0,
+     50,
+     86
+    ],
+    [
+     26,
+     0,
+     1593,
+     700,
+     0
+    ],
+    [
+     546,
+     123,
+     625,
+     2332,
+     3351
+    ],
+    [
+     396,
+     165,
+     0,
+     945,
+     5149
+    ]
+   ],
+   "reproduction": {
+    "Random Forest": {
+     "accuracy": {
+      "point": 0.6311,
+      "lo": 0.6258,
+      "hi": 0.6383
+     },
+     "precision": {
+      "point": 0.6556,
+      "lo": 0.6496,
+      "hi": 0.6622
+     },
+     "recall": {
+      "point": 0.6656,
+      "lo": 0.6599,
+      "hi": 0.672
+     },
+     "f1": {
+      "point": 0.6516,
+      "lo": 0.6462,
+      "hi": 0.6578
+     }
+    },
+    "XGBoost": {
+     "accuracy": {
+      "point": 0.6454,
+      "lo": 0.6403,
+      "hi": 0.6514
+     },
+     "precision": {
+      "point": 0.6751,
+      "lo": 0.6689,
+      "hi": 0.6809
+     },
+     "recall": {
+      "point": 0.6803,
+      "lo": 0.6742,
+      "hi": 0.6856
+     },
+     "f1": {
+      "point": 0.6563,
+      "lo": 0.6504,
+      "hi": 0.6614
+     }
+    },
+    "n_test": 23060
+   }
+  },
+  {
+   "task": "multiclass",
+   "scope": "full",
+   "protocol": "evdetect",
+   "model": "EVDetect XGBoost",
+   "n_train": 73790,
+   "n_test": 23051,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.6454,
+     "lo": 0.6393,
+     "hi": 0.6518
+    },
+    "precision": {
+     "point": 0.675,
+     "lo": 0.6683,
+     "hi": 0.6821
+    },
+    "recall": {
+     "point": 0.6803,
+     "lo": 0.674,
+     "hi": 0.6865
+    },
+    "f1": {
+     "point": 0.6563,
+     "lo": 0.6499,
+     "hi": 0.6625
+    }
+   },
+   "confusion": [
+    [
+     3395,
+     339,
+     87,
+     103,
+     303
+    ],
+    [
+     615,
+     2151,
+     0,
+     26,
+     81
+    ],
+    [
+     25,
+     0,
+     1640,
+     654,
+     0
+    ],
+    [
+     574,
+     127,
+     597,
+     1919,
+     3760
+    ],
+    [
+     420,
+     170,
+     0,
+     294,
+     5771
+    ]
+   ],
+   "reproduction": {
+    "Random Forest": {
+     "accuracy": {
+      "point": 0.6311,
+      "lo": 0.6258,
+      "hi": 0.6383
+     },
+     "precision": {
+      "point": 0.6556,
+      "lo": 0.6496,
+      "hi": 0.6622
+     },
+     "recall": {
+      "point": 0.6656,
+      "lo": 0.6599,
+      "hi": 0.672
+     },
+     "f1": {
+      "point": 0.6516,
+      "lo": 0.6462,
+      "hi": 0.6578
+     }
+    },
+    "XGBoost": {
+     "accuracy": {
+      "point": 0.6454,
+      "lo": 0.6403,
+      "hi": 0.6514
+     },
+     "precision": {
+      "point": 0.6751,
+      "lo": 0.6689,
+      "hi": 0.6809
+     },
+     "recall": {
+      "point": 0.6803,
+      "lo": 0.6742,
+      "hi": 0.6856
+     },
+     "f1": {
+      "point": 0.6563,
+      "lo": 0.6504,
+      "hi": 0.6614
+     }
+    },
+    "n_test": 23060
+   }
+  },
+  {
+   "task": "multiclass",
+   "scope": "full",
+   "protocol": "evdetect",
+   "model": "Ours (raw features)",
+   "n_train": 73790,
+   "n_test": 23051,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.6272,
+     "lo": 0.6211,
+     "hi": 0.6339
+    },
+    "precision": {
+     "point": 0.6623,
+     "lo": 0.6555,
+     "hi": 0.6695
+    },
+    "recall": {
+     "point": 0.66,
+     "lo": 0.6538,
+     "hi": 0.6661
+    },
+    "f1": {
+     "point": 0.6309,
+     "lo": 0.6247,
+     "hi": 0.6374
+    }
+   },
+   "confusion": [
+    [
+     3464,
+     293,
+     93,
+     46,
+     331
+    ],
+    [
+     812,
+     2000,
+     1,
+     1,
+     59
+    ],
+    [
+     33,
+     0,
+     1583,
+     703,
+     0
+    ],
+    [
+     707,
+     201,
+     550,
+     1691,
+     3828
+    ],
+    [
+     662,
+     261,
+     0,
+     13,
+     5719
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "full",
+   "protocol": "evdetect",
+   "model": "Ours (full pipeline)",
+   "n_train": 73790,
+   "n_test": 23051,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.7938,
+     "lo": 0.7881,
+     "hi": 0.7988
+    },
+    "precision": {
+     "point": 0.8625,
+     "lo": 0.8583,
+     "hi": 0.8663
+    },
+    "recall": {
+     "point": 0.844,
+     "lo": 0.8399,
+     "hi": 0.848
+    },
+    "f1": {
+     "point": 0.84,
+     "lo": 0.8359,
+     "hi": 0.844
+    }
+   },
+   "confusion": [
+    [
+     4044,
+     99,
+     0,
+     2,
+     82
+    ],
+    [
+     189,
+     2573,
+     0,
+     11,
+     100
+    ],
+    [
+     2,
+     0,
+     2267,
+     50,
+     0
+    ],
+    [
+     107,
+     2,
+     60,
+     3469,
+     3339
+    ],
+    [
+     64,
+     0,
+     0,
+     647,
+     5944
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "full",
+   "protocol": "block",
+   "model": "EVDetect RF",
+   "n_train": 92299,
+   "n_test": 22999,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.6302,
+     "lo": 0.6031,
+     "hi": 0.6565
+    },
+    "precision": {
+     "point": 0.6539,
+     "lo": 0.6322,
+     "hi": 0.6702
+    },
+    "recall": {
+     "point": 0.6763,
+     "lo": 0.6613,
+     "hi": 0.6911
+    },
+    "f1": {
+     "point": 0.6522,
+     "lo": 0.6323,
+     "hi": 0.669
+    }
+   },
+   "confusion": [
+    [
+     3167,
+     364,
+     66,
+     198,
+     231
+    ],
+    [
+     374,
+     1953,
+     1,
+     39,
+     74
+    ],
+    [
+     18,
+     0,
+     1267,
+     562,
+     0
+    ],
+    [
+     533,
+     144,
+     576,
+     2263,
+     3890
+    ],
+    [
+     442,
+     166,
+     0,
+     826,
+     5845
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "full",
+   "protocol": "block",
+   "model": "EVDetect XGBoost",
+   "n_train": 92299,
+   "n_test": 22999,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.6417,
+     "lo": 0.607,
+     "hi": 0.6746
+    },
+    "precision": {
+     "point": 0.6779,
+     "lo": 0.6556,
+     "hi": 0.6951
+    },
+    "recall": {
+     "point": 0.6871,
+     "lo": 0.672,
+     "hi": 0.7037
+    },
+    "f1": {
+     "point": 0.6524,
+     "lo": 0.6301,
+     "hi": 0.6722
+    }
+   },
+   "confusion": [
+    [
+     3231,
+     351,
+     77,
+     97,
+     270
+    ],
+    [
+     371,
+     1958,
+     1,
+     23,
+     88
+    ],
+    [
+     11,
+     0,
+     1288,
+     548,
+     0
+    ],
+    [
+     555,
+     133,
+     541,
+     1744,
+     4433
+    ],
+    [
+     448,
+     172,
+     0,
+     122,
+     6537
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "full",
+   "protocol": "block",
+   "model": "Ours (raw features)",
+   "n_train": 92299,
+   "n_test": 22999,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.6183,
+     "lo": 0.5847,
+     "hi": 0.6521
+    },
+    "precision": {
+     "point": 0.6573,
+     "lo": 0.6326,
+     "hi": 0.6772
+    },
+    "recall": {
+     "point": 0.6622,
+     "lo": 0.6428,
+     "hi": 0.6812
+    },
+    "f1": {
+     "point": 0.6236,
+     "lo": 0.599,
+     "hi": 0.6452
+    }
+   },
+   "confusion": [
+    [
+     3259,
+     311,
+     83,
+     30,
+     343
+    ],
+    [
+     556,
+     1819,
+     1,
+     0,
+     65
+    ],
+    [
+     18,
+     0,
+     1248,
+     581,
+     0
+    ],
+    [
+     701,
+     218,
+     509,
+     1604,
+     4374
+    ],
+    [
+     728,
+     260,
+     0,
+     1,
+     6290
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "full",
+   "protocol": "block",
+   "model": "Ours (full pipeline)",
+   "n_train": 92299,
+   "n_test": 22999,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.7633,
+     "lo": 0.7298,
+     "hi": 0.7961
+    },
+    "precision": {
+     "point": 0.8545,
+     "lo": 0.8367,
+     "hi": 0.8694
+    },
+    "recall": {
+     "point": 0.8255,
+     "lo": 0.8078,
+     "hi": 0.8443
+    },
+    "f1": {
+     "point": 0.8193,
+     "lo": 0.7968,
+     "hi": 0.8395
+    }
+   },
+   "confusion": [
+    [
+     3880,
+     82,
+     0,
+     3,
+     61
+    ],
+    [
+     199,
+     2127,
+     0,
+     12,
+     103
+    ],
+    [
+     2,
+     0,
+     1765,
+     80,
+     0
+    ],
+    [
+     127,
+     3,
+     59,
+     3140,
+     4077
+    ],
+    [
+     149,
+     7,
+     0,
+     479,
+     6644
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "charging",
+   "protocol": "evdetect",
+   "model": "EVDetect RF",
+   "n_train": 18939,
+   "n_test": 5919,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.8439,
+     "lo": 0.8339,
+     "hi": 0.853
+    },
+    "precision": {
+     "point": 0.8331,
+     "lo": 0.8233,
+     "hi": 0.8436
+    },
+    "recall": {
+     "point": 0.8439,
+     "lo": 0.8339,
+     "hi": 0.8533
+    },
+    "f1": {
+     "point": 0.838,
+     "lo": 0.8284,
+     "hi": 0.8476
+    }
+   },
+   "confusion": [
+    [
+     2301,
+     460,
+     74,
+     0,
+     0
+    ],
+    [
+     383,
+     1006,
+     0,
+     0,
+     0
+    ],
+    [
+     7,
+     0,
+     1688,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "reproduction": {
+    "Random Forest": {
+     "accuracy": {
+      "point": 0.8439,
+      "lo": 0.8315,
+      "hi": 0.8531
+     },
+     "precision": {
+      "point": 0.8331,
+      "lo": 0.8211,
+      "hi": 0.8439
+     },
+     "recall": {
+      "point": 0.8439,
+      "lo": 0.8323,
+      "hi": 0.8543
+     },
+     "f1": {
+      "point": 0.838,
+      "lo": 0.8259,
+      "hi": 0.8476
+     }
+    },
+    "XGBoost": {
+     "accuracy": {
+      "point": 0.8586,
+      "lo": 0.849,
+      "hi": 0.8674
+     },
+     "precision": {
+      "point": 0.8565,
+      "lo": 0.8462,
+      "hi": 0.8659
+     },
+     "recall": {
+      "point": 0.8383,
+      "lo": 0.828,
+      "hi": 0.8477
+     },
+     "f1": {
+      "point": 0.8444,
+      "lo": 0.834,
+      "hi": 0.853
+     }
+    },
+    "n_test": 5919
+   }
+  },
+  {
+   "task": "multiclass",
+   "scope": "charging",
+   "protocol": "evdetect",
+   "model": "EVDetect XGBoost",
+   "n_train": 18939,
+   "n_test": 5919,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.8586,
+     "lo": 0.849,
+     "hi": 0.8672
+    },
+    "precision": {
+     "point": 0.8565,
+     "lo": 0.846,
+     "hi": 0.866
+    },
+    "recall": {
+     "point": 0.8383,
+     "lo": 0.8283,
+     "hi": 0.8476
+    },
+    "f1": {
+     "point": 0.8444,
+     "lo": 0.834,
+     "hi": 0.8536
+    }
+   },
+   "confusion": [
+    [
+     2518,
+     247,
+     70,
+     0,
+     0
+    ],
+    [
+     511,
+     878,
+     0,
+     0,
+     0
+    ],
+    [
+     9,
+     0,
+     1686,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "reproduction": {
+    "Random Forest": {
+     "accuracy": {
+      "point": 0.8439,
+      "lo": 0.8315,
+      "hi": 0.8531
+     },
+     "precision": {
+      "point": 0.8331,
+      "lo": 0.8211,
+      "hi": 0.8439
+     },
+     "recall": {
+      "point": 0.8439,
+      "lo": 0.8323,
+      "hi": 0.8543
+     },
+     "f1": {
+      "point": 0.838,
+      "lo": 0.8259,
+      "hi": 0.8476
+     }
+    },
+    "XGBoost": {
+     "accuracy": {
+      "point": 0.8586,
+      "lo": 0.849,
+      "hi": 0.8674
+     },
+     "precision": {
+      "point": 0.8565,
+      "lo": 0.8462,
+      "hi": 0.8659
+     },
+     "recall": {
+      "point": 0.8383,
+      "lo": 0.828,
+      "hi": 0.8477
+     },
+     "f1": {
+      "point": 0.8444,
+      "lo": 0.834,
+      "hi": 0.853
+     }
+    },
+    "n_test": 5919
+   }
+  },
+  {
+   "task": "multiclass",
+   "scope": "charging",
+   "protocol": "evdetect",
+   "model": "Ours (raw features)",
+   "n_train": 18939,
+   "n_test": 5919,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.8554,
+     "lo": 0.8454,
+     "hi": 0.8642
+    },
+    "precision": {
+     "point": 0.8569,
+     "lo": 0.8466,
+     "hi": 0.8661
+    },
+    "recall": {
+     "point": 0.8298,
+     "lo": 0.8192,
+     "hi": 0.8391
+    },
+    "f1": {
+     "point": 0.8378,
+     "lo": 0.8267,
+     "hi": 0.8471
+    }
+   },
+   "confusion": [
+    [
+     2550,
+     215,
+     70,
+     0,
+     0
+    ],
+    [
+     563,
+     826,
+     0,
+     0,
+     0
+    ],
+    [
+     8,
+     0,
+     1687,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "charging",
+   "protocol": "evdetect",
+   "model": "Ours (full pipeline)",
+   "n_train": 18939,
+   "n_test": 5919,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.9806,
+     "lo": 0.977,
+     "hi": 0.9841
+    },
+    "precision": {
+     "point": 0.9807,
+     "lo": 0.977,
+     "hi": 0.9844
+    },
+    "recall": {
+     "point": 0.978,
+     "lo": 0.9739,
+     "hi": 0.9822
+    },
+    "f1": {
+     "point": 0.9794,
+     "lo": 0.9756,
+     "hi": 0.9831
+    }
+   },
+   "confusion": [
+    [
+     2789,
+     46,
+     0,
+     0,
+     0
+    ],
+    [
+     69,
+     1320,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1695,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "charging",
+   "protocol": "block",
+   "model": "EVDetect RF",
+   "n_train": 24927,
+   "n_test": 4666,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.8446,
+     "lo": 0.8201,
+     "hi": 0.8699
+    },
+    "precision": {
+     "point": 0.8174,
+     "lo": 0.7702,
+     "hi": 0.8448
+    },
+    "recall": {
+     "point": 0.8484,
+     "lo": 0.8316,
+     "hi": 0.863
+    },
+    "f1": {
+     "point": 0.8287,
+     "lo": 0.7915,
+     "hi": 0.8494
+    }
+   },
+   "confusion": [
+    [
+     1951,
+     437,
+     67,
+     0,
+     0
+    ],
+    [
+     211,
+     661,
+     0,
+     0,
+     0
+    ],
+    [
+     10,
+     0,
+     1329,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "charging",
+   "protocol": "block",
+   "model": "EVDetect XGBoost",
+   "n_train": 24927,
+   "n_test": 4666,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.8633,
+     "lo": 0.8335,
+     "hi": 0.8917
+    },
+    "precision": {
+     "point": 0.8372,
+     "lo": 0.7969,
+     "hi": 0.8584
+    },
+    "recall": {
+     "point": 0.8382,
+     "lo": 0.8156,
+     "hi": 0.8567
+    },
+    "f1": {
+     "point": 0.8374,
+     "lo": 0.81,
+     "hi": 0.8541
+    }
+   },
+   "confusion": [
+    [
+     2127,
+     257,
+     71,
+     0,
+     0
+    ],
+    [
+     301,
+     571,
+     0,
+     0,
+     0
+    ],
+    [
+     9,
+     0,
+     1330,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "charging",
+   "protocol": "block",
+   "model": "Ours (raw features)",
+   "n_train": 24927,
+   "n_test": 4666,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.8626,
+     "lo": 0.8282,
+     "hi": 0.8943
+    },
+    "precision": {
+     "point": 0.839,
+     "lo": 0.8027,
+     "hi": 0.8583
+    },
+    "recall": {
+     "point": 0.828,
+     "lo": 0.8062,
+     "hi": 0.8468
+    },
+    "f1": {
+     "point": 0.8322,
+     "lo": 0.8075,
+     "hi": 0.8486
+    }
+   },
+   "confusion": [
+    [
+     2164,
+     222,
+     69,
+     0,
+     0
+    ],
+    [
+     340,
+     532,
+     0,
+     0,
+     0
+    ],
+    [
+     10,
+     0,
+     1329,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "reproduction": null
+  },
+  {
+   "task": "multiclass",
+   "scope": "charging",
+   "protocol": "block",
+   "model": "Ours (full pipeline)",
+   "n_train": 24927,
+   "n_test": 4666,
+   "classes": [
+    "Backdoor",
+    "Benign",
+    "Cryptojacking",
+    "DoS",
+    "Recon"
+   ],
+   "metrics": {
+    "accuracy": {
+     "point": 0.9636,
+     "lo": 0.9402,
+     "hi": 0.9816
+    },
+    "precision": {
+     "point": 0.962,
+     "lo": 0.937,
+     "hi": 0.9786
+    },
+    "recall": {
+     "point": 0.9478,
+     "lo": 0.9137,
+     "hi": 0.9766
+    },
+    "f1": {
+     "point": 0.9544,
+     "lo": 0.9267,
+     "hi": 0.9749
+    }
+   },
+   "confusion": [
+    [
+     2403,
+     52,
+     0,
+     0,
+     0
+    ],
+    [
+     111,
+     754,
+     7,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1339,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "reproduction": null
+  }
+ ]
+}

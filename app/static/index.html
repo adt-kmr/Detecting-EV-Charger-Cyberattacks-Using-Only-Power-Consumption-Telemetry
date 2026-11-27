@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="stylesheet" href="/static/styles.css?v=2" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
   <script type="importmap">
   {
@@ -163,6 +163,21 @@
     </div>
   </section>
 
+  <!-- ================= BENCHMARK ================= -->
+  <section id="benchSection" style="display:none">
+    <div class="clay yellow">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap">
+        <div>
+          <h2><span class="sym y">&#x21C4;</span>Benchmark vs. EVDetect <span class="muted" style="font-size:12px;font-weight:700">Scientific Reports, 2026 &middot; same EVSE-B power file</span></h2>
+          <p class="sub" style="max-width:760px">Macro-F1 with 95% bootstrap confidence intervals. EVDetect's tuned Random Forest and XGBoost use the 4 raw signals; "Ours (raw)" is this project's model on the same raw signals; "Ours (full)" adds the 20-sample rolling features and the Isolation Forest score. Produced by <span class="mono">benchmarks/evdetect/run_benchmark.py</span>.</p>
+        </div>
+        <div class="seg" id="benchProto"></div>
+      </div>
+      <div class="grid four" id="benchGrid" style="margin-top:16px"></div>
+      <p class="note" id="benchNote" style="margin-top:16px"></p>
+    </div>
+  </section>
+
   <!-- ================= UPLOAD ================= -->
   <section class="grid two">
     <div class="clay">
@@ -183,7 +198,7 @@
 
   <section>
     <div class="clay">
-      <h2><span class="sym">&#x24D8;</span>Dataset</h2>
+      <h2><span class="sym">&#x25CE;</span>Dataset</h2>
       <div id="dsInfo" class="sub">Loading</div>
     </div>
   </section>
@@ -191,6 +206,6 @@
   <footer>&#x25C6; XGBoost &middot; LightGBM &middot; RandomForest soft-voting ensemble with Isolation Forest anomaly feature &#x25C6;</footer>
 </div>
 
-<script type="module" src="/static/main.js"></script>
+<script type="module" src="/static/main.js?v=2"></script>
 </body>
 </html>

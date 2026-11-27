@@ -194,7 +194,7 @@ table.rep td:first-child { border-radius: 12px 0 0 12px; font-weight: 900; }
 table.rep td:last-child { border-radius: 0 12px 12px 0; }
 
 /* ---------- upload ---------- */
-.drop { border-radius: 24px; border: 2px dashed var(--purple-2); background: var(--purple-4); padding: 26px; text-align: center; cursor: pointer; transition: background .2s, transform .2s; }
+.drop { display: block; border-radius: 24px; border: 2px dashed var(--purple-2); background: var(--purple-4); padding: 26px; text-align: center; cursor: pointer; transition: background .2s, transform .2s; }
 .drop.over { background: var(--yellow-3); border-color: var(--yellow); transform: scale(1.01); }
 .drop .big { font-size: 28px; color: var(--purple); font-weight: 900; }
 .error { color: #c04848; font-weight: 800; font-size: 13px; }
